@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+dependencies {
+	compile gradleApi()
+	testCompile "junit:junit:4.11"
+}
+repositories {
+	mavenCentral()
+}
+
+group='com.dsleng.gradle.speclipsegenerator'   //Group name makes easier to manager the packages.
+version='1.1.0-SNAPSHOT'
+
+
+
+uploadArchives {
+	repositories {
+	   mavenDeployer {
+			 repository(url: "http://localhost:8081/nexus/content/repositories/snapshots") {
+			 authentication(userName: "admin", password: "12unix21")
+}
+			 pom.version = "1.1.0-SNAPSHOT"
+			 pom.artifactId = "com.dsleng.gradle.speclipsegenerator"
+			 pom.groupId = "com.dsleng.gradle"
+	   }
+	}
+}
+  
